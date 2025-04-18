@@ -1,0 +1,58 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Productos Veterinaria</title>
+    <link rel="stylesheet" href="~/css/Productos.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Productos Cosméticos para Mascotas</h1>
+        <div class="grid-container">
+            <button class="back-button" onclick="history.back()">←</button>
+            <div class="producto">
+                
+                <a href="@Url.Action("productos", "productos2", new { nombre = "Shampoo" })">
+                    <button><img src="~/imagines/Shampoo.png" alt="Shampoo"></button>
+                </a>
+                <p>Shampoo</p>
+            </div>
+            <div class="producto">
+                <a href="@Url.Action("productos", "productos2", new { nombre = "Acondicionador" })">
+                    <button><img src="~/imagines/Acondicionador.png" alt="Acondicionador"></button>
+                </a>
+                <p>Acondicionador</p>
+            </div>
+            <div class="producto">
+                <a href="@Url.Action("productos", "productos2", new { nombre = "Perfume" })">
+                    <button><img src="~/imagines/Perfume.png" alt="Perfume"></button>
+                </a>
+                <p>Perfume</p>
+            </div>
+            <div class="producto">
+                <a href="@Url.Action("productos", "productos2", new { nombre = "Jabon_antipulgas" })">
+                    <button><img src="~/imagines/Jabon_antipulgas.png" alt="Jabon antipulgas"></button>
+                </a>
+                <p>Jabón antipulgas</p>
+            </div>
+            <div class="producto">
+                <a href="@Url.Action("productos", "productos2", new { nombre = "Toallitas_humedas" })">
+                    <button><img src="~/imagines/Toallitas_humedas.png" alt="Toallitas humedas"></button>
+                </a>
+                <p>Toallitas húmedas</p>
+            </div>
+            <div class="producto">
+                <a href="@Url.Action("productos", "productos2", new { nombre = "Desodorante_en_spray" })">
+                    <button><img src="~/imagines/Desodorante_en_spray.png" alt="Desodorante en spray"></button>
+                </a>
+                <p>Desodorante en spray</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

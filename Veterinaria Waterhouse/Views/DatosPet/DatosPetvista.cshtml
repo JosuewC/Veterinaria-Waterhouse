@@ -1,0 +1,75 @@
+﻿@model Veterinaria_Waterhouse.Models.Mascota
+@{
+    Layout = null;
+
+    bool mascotaExiste = Model != null;
+    string imagenPath = mascotaExiste
+        ? Url.Content($"~/imagines/{Model.nombre.ToLower().Replace(" ", "_").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u").Replace("ñ", "n")}.jpg")
+        : "";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/DatosPet.css">
+    <title>Datos Mascota</title>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="history.back()">&larr;</button>
+
+        @if (mascotaExiste)
+        {
+            <!-- Verificar si la mascota ya fue adoptada y mostrar el mensaje -->
+            @if (ViewBag.MensajeAdopcion != null)
+            {
+                <div class="message-container">
+                    <h2>@ViewBag.MensajeAdopcion</h2>
+                </div>
+            }
+            else
+            {
+                <!-- Imagen del animal -->
+                <div class="image-container">
+                    <img src="@imagenPath" alt="@Model.nombre" class="pet-image"
+                         style="width: 200px; height: auto; border-radius: 10px; box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);">
+                </div>
+
+                <!-- Formulario solo si la mascota no ha sido adoptada -->
+                <form method="post" action="@Url.Action("AdoptarMascota", "DatosPet")">
+                    <input type="hidden" name="nombre" value="@Model.nombre">
+
+                    <label for="nombre">Nombre</label>
+                    <input type="text" id="nombre" value="@Model.nombre" disabled class="info-input">
+
+                    <label for="raza">Raza</label>
+                    <input type="text" id="raza" value="@Model.raza" disabled class="info-input">
+
+                    <label for="edad">Edad</label>
+                    <input type="number" id="edad" value="@Model.edad" disabled class="info-input">
+
+                    <label for="peso">Peso</label>
+                    <input type="text" id="peso" value="@Model.peso" disabled class="info-input">
+
+                    <!-- Solo mostrar el botón si la mascota no ha sido adoptada -->
+                    @if (ViewBag.EstadoAdopcion != "Adoptado")
+                    {
+                        <button type="submit" class="adopt-button">Adoptar</button>
+                    }
+                </form>
+
+                <p class="rescue-message">SALVAME SOY <br> MUY AMIGABLE</p>
+            }
+        }
+        else
+        {
+            <div class="message-container">
+                <h2>La mascota no existe.</h2>
+                <p>Por favor, intente nuevamente.</p>
+            </div>
+        }
+    </div>
+</body>
+</html>

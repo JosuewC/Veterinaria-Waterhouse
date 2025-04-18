@@ -1,0 +1,43 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de Reservas</title>
+    <link rel="stylesheet" href="~/css/HistorialM.css">
+</head>
+<body>
+
+    <div class="container">
+        <h2>Historial de Reservas</h2>
+
+        <!-- Mostrar todas las reservas -->
+        <div id="historialReservas">
+            <!-- Las reservas se insertarán aquí dinámicamente -->
+        </div>
+
+        <script>
+            // Recuperar el historial de reservas desde localStorage
+            const historialReservas = JSON.parse(localStorage.getItem("historialReservas")) || [];
+
+            // Mostrar las reservas
+            const historialDiv = document.getElementById("historialReservas");
+            if (historialReservas.length > 0) {
+                historialReservas.forEach(reserva => {
+                    const reservaElement = document.createElement("div");
+                    reservaElement.classList.add("reserva");
+                    reservaElement.innerHTML = `
+                        <p><strong>Servicio:</strong> ${reserva.Servicio}</p>
+                        <p><strong>Fecha:</strong> ${reserva.Fecha}</p>
+                        <hr>
+                    `;
+                    historialDiv.appendChild(reservaElement);
+                });
+            } else {
+                historialDiv.innerHTML = "<p>No hay reservas en el historial.</p>";
+            }
+        </script>
+    </div>
+
+</body>
+</html>

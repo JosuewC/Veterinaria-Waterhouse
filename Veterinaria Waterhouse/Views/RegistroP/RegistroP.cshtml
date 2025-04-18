@@ -1,0 +1,63 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Mascota</title>
+    <link rel="stylesheet" href="~/css/RegistroP.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+    <div class="form-container">
+        <h2>Registrar Mascota</h2>
+        <form id="registroForm">
+            <input type="text" id="nombre_mascota" name="nombre_mascota" placeholder="Nombre de la Mascota" required>
+            <input type="text" id="edad" name="edad" placeholder="Edad" required>
+            <input type="text" id="raza" name="raza" placeholder="Raza" required>
+            <input type="text" id="peso" name="peso" placeholder="Peso" required>
+            <input type="text" id="nombre_dueno" name="NombreDueño" placeholder="Nombre del Dueño" required>
+            <input type="text" id="id_dueno" name="id_dueno" placeholder="Identificación del Dueño" required>
+            <input type="email" id="correo" name="Correo" placeholder="Correo del Dueño" required>
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+
+    <script>
+                $(document).ready(function () {
+            $("#registroForm").submit(function (event) {
+                event.preventDefault(); // Evita el envío tradicional del formulario
+
+                // Recoger los datos del formulario
+                var formData = $(this).serialize();
+
+                // Realizar la solicitud AJAX para enviar los datos
+                $.ajax({
+                    type: "POST",
+                    url: "/RegistroP/RegistrarMascota", // Asegúrate de que esta URL coincida con la ruta de tu controlador en ASP.NET
+                    data: formData, // Datos del formulario
+                    success: function (response) {
+                        if (response.success) {
+                            alert(response.message); // Mostrar mensaje de éxito
+                            // Redirigir a la vista Menu después del registro
+                            setTimeout(function () {
+                                window.location.href = "/Menu/Menu"; // Redirige a la acción 'Index' del controlador 'Menu'
+                            }, 1000); // Espera 1 segundo antes de redirigir
+                        } else {
+                            alert("Error: " + response.message); // Mostrar mensaje de error si es false
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Hubo un error al registrar la mascota. Detalles del error: " + xhr.responseText);
+                        console.error("Error al registrar la mascota:", error);
+                    }
+                });
+            });
+        });
+
+    </script>
+</body>
+</html>

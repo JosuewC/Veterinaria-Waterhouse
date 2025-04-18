@@ -1,0 +1,121 @@
+﻿body {
+    background: #404A46; /* Color de fondo similar a la imagen */
+    font-family: Arial, sans-serif;
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    color: white;
+}
+
+.container {
+    position: relative;
+    width: 90%;
+    max-width: 300px;
+    margin: auto;
+    padding: 100px 20px 20px; /* Mayor espacio arriba para mover la información más abajo */
+    background: transparent;
+    border-radius: 10px;
+    box-shadow: none;
+}
+
+.back-button {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
+    color: white;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 80px; /* Mueve el formulario más abajo */
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    margin-top: 20px;
+}
+
+input {
+    width: 80%;
+    height: 30px;
+    background: #666;
+    border: none;
+    border-radius: 5px;
+    text-align: center;
+    color: white;
+    font-size: 14px;
+    padding: 5px;
+}
+
+.rescue-message {
+    margin-top: 70px; /* Mayor separación entre el formulario y el mensaje */
+    font-size: 20px;
+    font-weight: bold;
+    text-transform: uppercase;
+}
+
+.adopt-button {
+    margin-top: 40px;
+    background: #FFD700;
+    color: #333;
+    font-size: 16px;
+    font-weight: bold;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    .adopt-button:hover {
+        background: #FFC107;
+    }
+
+/* Responsividad */
+@media (max-width: 480px) {
+    .container {
+        max-width: 90%;
+    }
+
+    input {
+        width: 100%;
+    }
+
+    .rescue-message {
+        font-size: 18px;
+    }
+}
+
+@media (max-width: 320px) {
+    .back-button {
+        font-size: 20px;
+    }
+
+    label {
+        font-size: 14px;
+    }
+
+    .rescue-message {
+        font-size: 16px;
+    }
+}
+.adopted-message {
+    font-size: 1.2rem;
+    color: #d9534f;
+    background-color: #f9d6d5;
+    padding: 12px;
+    border-radius: 8px;
+    text-align: center;
+    margin: 20px auto;
+    width: fit-content;
+    font-weight: bold;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+

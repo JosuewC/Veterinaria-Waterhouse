@@ -1,0 +1,64 @@
+﻿@{
+    ViewData["Title"] = "Pantalla 1";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+
+    <!-- Título -->
+    <title>Veterinaria Waterhouse</title>
+
+    <!-- Manifest PWA -->
+    <link rel="manifest" href="/manifest.json" />
+    <meta name="theme-color" content="#FFFFFF" />
+
+    <!-- Ícono -->
+    <link rel="icon" type="image/png" href="/content/icons/imagen2.png" />
+
+    <!-- CSS -->
+    <link rel="stylesheet" href="~/css/pantalla1.css" />
+
+    <!-- Service Worker -->
+ 
+</head>
+<body>
+    <div class="container">
+
+        <!-- Contenido principal -->
+        <div>
+            <h1>Bienvenido a Veterinaria Waterhouse</h1>
+            <img src="~/imagines/pantalla1.jpg" alt="Rex" />
+            <p>Si no tiene cuenta, regístrate a Veterinaria Waterhouse.</p>
+        </div>
+
+        <!-- Paginador -->
+        <div class="nav-dots">
+            <span class="active"></span>
+            <span></span>
+            <span></span>
+        </div>
+
+        <!-- Botones de navegación -->
+        <div class="buttons">
+            <a href="@Url.Action("pantalla2", "Onboarding")" class="btn">Siguiente</a>
+            <a href="@Url.Action("CompletarOnboarding", "Onboarding")" class="btn btn-secondary">Omitir</a>
+        </div>
+    </div>
+    <script>
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', function () {
+                navigator.serviceWorker.register('/service-worker.js')
+                    .then(function (registration) {
+                        console.log('Service Worker registrado con éxito:', registration.scope);
+                    }).catch(function (error) {
+                        console.log('Error al registrar el Service Worker:', error);
+                    });
+            });
+        }
+    </script>
+</body>
+</html>

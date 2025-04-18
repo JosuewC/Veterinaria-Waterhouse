@@ -1,0 +1,198 @@
+﻿/* 🔹 Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background: url("../imagines/menu.png") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+/* 🔹 Contenedor principal */
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+/* 🔹 Header */
+header {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    padding: 10px 20px;
+}
+
+/* 🔹 Logo */
+.logo {
+    font-size: 22px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px; /* Añadir espacio entre logo y botones */
+    text-align: center;
+}
+
+/* 🔹 Contenedor de botones en la parte superior */
+.top-buttons {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    position: absolute;
+    top: 10px;
+    right: 10px;
+}
+
+/* 🔹 Botones de perfil y carrito */
+.icon-button {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease-in-out;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 45px;
+    height: 45px;
+}
+
+    .icon-button img {
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+        object-fit: cover;
+    }
+
+    .icon-button:hover {
+        transform: scale(1.1);
+    }
+
+/* 🔹 Grid de servicios */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+}
+
+/* 🔹 Botón de servicio */
+.service-button {
+    background: white;
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.25);
+    transition: transform 0.2s ease-in-out;
+}
+
+    .service-button img {
+        width: 70px;
+        height: 70px;
+    }
+
+    .service-button:hover {
+        transform: scale(1.05);
+    }
+
+/* 🔹 Sección de contacto más pequeña y transparente */
+.contact-section {
+    margin-top: 20px;
+    padding: 10px;
+    background: rgba(255, 255, 255, 0.5); /* 🔹 Transparente */
+    color: #333; /* 🔹 Texto oscuro */
+    text-align: center;
+    border-radius: 8px;
+    font-size: 16px;
+    max-width: 300px; /* 🔹 Más pequeña */
+    width: 100%;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* 🔹 Sombra ligera */
+}
+
+    .contact-section h3 {
+        margin-bottom: 5px;
+        font-size: 18px;
+        font-weight: bold;
+    }
+
+    .contact-section p {
+        margin: 3px 0;
+        font-size: 14px;
+    }
+
+/* 🔹 Responsividad */
+@media (max-width: 480px) {
+    .container {
+        max-width: 95%;
+        padding: 15px;
+    }
+
+    .service-button img {
+        width: 60px;
+        height: 60px;
+    }
+
+    .top-buttons {
+        top: 5px;
+        right: 5px;
+    }
+
+    .icon-button {
+        width: 40px;
+        height: 40px;
+    }
+
+        .icon-button img {
+            width: 40px;
+            height: 40px;
+        }
+}
+/* CSS Actualizado */
+body {
+    font-family: Arial, sans-serif;
+    background: url("../imagines/menu.png") no-repeat center center fixed;
+    background-size: cover;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    padding: 0;
+    flex-direction: column;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 20px;
+    border-radius: 12px;
+    text-align: center;
+    max-width: 500px;
+    width: 90%;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    position: relative;
+}
+
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+    margin-top: 20px;
+    position: relative;
+}
+
+.tipo-cambio-button {
+    grid-column: span 2;
+    justify-self: center;
+}

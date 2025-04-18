@@ -1,0 +1,108 @@
+﻿/* Estilos generales */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f5f5f5;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.container {
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 600px;
+    margin: 0 auto;
+}
+
+.title {
+    font-size: 24px;
+    margin-bottom: 20px;
+}
+
+/* Contenedor de productos */
+.cart-box {
+    display: flex;
+    flex-direction: column; /* Asegura que los productos se acomoden en columna */
+    gap: 15px; /* Espacio entre los productos */
+    margin-bottom: 20px;
+}
+
+/* Estilo para cada producto */
+.cart-item {
+    padding: 15px;
+    background-color: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    display: flex;
+    flex-direction: column; /* Asegura que los detalles del producto se acomoden en columna */
+    width: 100%;
+}
+
+/* Alineación y estilo de los elementos del producto */
+.product-container p {
+    margin: 5px 0;
+}
+
+/* Estilo para el total */
+.total-box {
+    padding: 10px;
+    background-color: #dff0d8;
+    margin-top: 20px;
+    border-radius: 8px;
+    border: 1px solid #d0e9c6;
+}
+
+/* Estilo para los botones */
+.formalize-button, .clear-cart-button {
+    padding: 10px 15px;
+    font-size: 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%; /* Hacer que los botones ocupen todo el ancho */
+    margin-top: 10px;
+}
+
+.formalize-button {
+    background-color: #5bc0de;
+    color: white;
+}
+
+    .formalize-button:hover {
+        background-color: #31b0d5;
+    }
+
+.clear-cart-button {
+    background-color: #d9534f;
+    color: white;
+}
+
+    .clear-cart-button:hover {
+        background-color: #c9302c;
+    }
+
+/* Estilo responsivo para pantallas pequeñas */
+@media (max-width: 600px) {
+    .cart-item {
+        width: 100%;
+    }
+
+    .product-container {
+        flex-direction: column;
+    }
+
+    .total-box {
+        width: 100%;
+    }
+
+    .formalize-button, .clear-cart-button {
+        width: 100%;
+    }
+}

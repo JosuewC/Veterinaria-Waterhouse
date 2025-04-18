@@ -1,0 +1,41 @@
+﻿@model Veterinaria_Waterhouse.Controllers.TipoCambioViewModel
+
+@{
+    ViewBag.Title = "Tipo de Cambio - USD a CRC";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/tipoCambio.css">
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="history.back()">←</button>
+        <div class="header">
+            <h2>Tipo de Cambio</h2>
+            <p>USD a CRC</p>
+        </div>
+        <div class="tipo-cambio">
+            <div class="tipo">
+                <strong>Moneda Base:</strong> @Model.MonedaBase
+            </div>
+            <div class="tipo">
+                <strong>Moneda Destino:</strong> @Model.MonedaDestino
+            </div>
+            <div class="tipo">
+                <strong>Tipo de Cambio Compra:</strong> ₡@Model.Compra
+            </div>
+            <div class="tipo">
+                <strong>Tipo de Cambio Venta:</strong> ₡@Model.Venta
+            </div>
+            <div class="tipo">
+          
+            </div>
+        </div>
+    </div>
+</body>
+</html>

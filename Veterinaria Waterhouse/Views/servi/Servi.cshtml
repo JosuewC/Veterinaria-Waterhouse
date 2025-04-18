@@ -1,0 +1,50 @@
+﻿@model List<Veterinaria_Waterhouse.Models.servi>
+
+@{
+    Layout = null;
+    ViewBag.Title = "Servicios que ofrecemos";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/servi.css">
+</head>
+<body>
+
+    <div class="servicios-container">
+        <button class="back-button" onclick="history.back()">←</button>
+        <h1>Servicios que ofrecemos</h1>
+
+        <div class="servicios-cuadro">
+            @if (Model != null && Model.Count > 0)
+            {
+                <ul class="lista-servicios">
+                    @foreach (var servicio in Model)
+                    {
+                        <li>
+                            <h3>@servicio.nombre_servicio</h3>
+                            <p>@servicio.detalle</p>
+                            <strong>Precio: ₡@servicio.precio.ToString("N2")</strong>
+                        </li>
+                    }
+                </ul>
+            }
+            else
+            {
+                <p>No hay servicios disponibles.</p>
+            }
+        </div>
+
+        <!-- Botón que redirige a Reserva/Reserva -->
+        <a href="/Reserva/Reserva">
+            <button class="btn-cita">Sacar Cita</button>
+        </a>
+
+    </div>
+
+</body>
+</html>

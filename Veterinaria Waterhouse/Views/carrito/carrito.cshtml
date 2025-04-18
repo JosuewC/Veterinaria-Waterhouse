@@ -1,0 +1,101 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito de Compra</title>
+    <link rel="stylesheet" href="~/css/carrito.css">  <!-- Enlace al CSS -->
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="history.back()">←</button>
+        <h1 class="title">Carrito de Compra</h1>
+
+        <!-- Sección para mostrar los productos del carrito -->
+        <div class="cart-box" id="cartItems"></div>
+
+        <!-- Mostrar el total final -->
+        <div class="total-box" id="total"></div>
+
+        <!-- Botón para vaciar el carrito -->
+        <button class="clear-cart-button" onclick="vaciarCarrito()">Borrar Todo</button>
+
+        <button class="formalize-button" onclick="formalizarCompra()">Formalizar Compra</button>
+    </div>
+
+    <script>
+        // Mostrar los productos del carrito
+        document.addEventListener('DOMContentLoaded', function() {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            let cartItemsDiv = document.getElementById("cartItems");
+            let total = 0;
+
+            carrito.forEach(item => {
+                let itemDiv = document.createElement('div');
+                itemDiv.classList.add("cart-item");
+
+                itemDiv.innerHTML = `
+                    <div class="product-container">
+                        <p><strong>${item.nombre}</strong></p>
+                        <p>Precio: $${item.precio}</p>
+                        <p>Cantidad: <input type="number" value="${item.cantidad}" min="1" onchange="actualizarCantidad(${item.id}, this.value)" /></p>
+                        <p>Total: $${(item.precio * item.cantidad).toFixed(2)}</p>
+                    </div>
+                    <hr>
+                `;
+
+                total += item.precio * item.cantidad;
+                cartItemsDiv.appendChild(itemDiv);
+            });
+
+            // Mostrar el total del carrito
+            let totalDiv = document.createElement('div');
+            totalDiv.innerHTML = `<p><strong>Total: $${total.toFixed(2)}</strong></p>`;
+            document.getElementById("total").appendChild(totalDiv);
+        });
+
+        // Actualizar la cantidad de un producto en el carrito
+        function actualizarCantidad(id, cantidad) {
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            let index = carrito.findIndex(item => item.id === id);
+
+            if (index > -1) {
+                carrito[index].cantidad = parseInt(cantidad);
+                localStorage.setItem("carrito", JSON.stringify(carrito));
+                location.reload();  // Recargar la página para actualizar el total
+            }
+        }
+
+        // Vaciar el carrito
+        function vaciarCarrito() {
+            localStorage.removeItem("carrito");  // Eliminar todos los productos del carrito
+            location.reload();  // Recargar la página para mostrar el carrito vacío
+        }
+
+              // Función para formalizar la compra y redirigir a la página de pago
+               // Función para formalizar la compra y redirigir a la página de pago
+                // Función para formalizar la compra y redirigir a la página de pago
+        function formalizarCompra() {
+            // Obtener los productos del carrito
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+            let total = 0;
+
+            carrito.forEach(item => {
+                total += item.precio * item.cantidad;
+            });
+
+            // Guardar los productos y el total en el localStorage para pasarlos a la página de pago
+            localStorage.setItem("productos", JSON.stringify(carrito));
+            localStorage.setItem("total", total.toFixed(2));
+
+            // Redirigir a la página de pago (actualiza la ruta según tu configuración)
+            window.location.href = '/Pago/Pago';  // Cambia aquí a la ruta correcta para que te lleve a la vista "Pago"
+        }
+
+
+
+    </script>
+
+</body>
+</html>

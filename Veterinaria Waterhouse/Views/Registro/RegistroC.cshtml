@@ -1,0 +1,138 @@
+﻿@model Veterinaria_Waterhouse.Models.ReservaCita
+
+@{
+    ViewBag.Title = "Registrarse";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/REGIC.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Registrarse</h2>
+        <form id="registroForm" action="/Registro/RegistrarCliente" method="POST">
+            <div class="input-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="Nombre" required>
+            </div>
+
+            <div class="input-group">
+                <label for="identificacion">Identificación</label>
+                <input type="text" id="identificacion" name="Identificacion" required>
+            </div>
+
+            <div class="input-group">
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="celular" name="Celular" required>
+            </div>
+
+            <div class="input-group">
+                <label for="email">Email</label>
+                <input type="email" id="correo" name="Correo" required>
+            </div>
+
+            <div class="input-group">
+                <label for="usuario">Usuario (Debe ser el correo)</label>
+                <input type="text" id="usuario" name="Usuario" required>
+            </div>
+
+            <div class="input-group">
+                <p class="password-rules">
+                    <strong>Requisitos de contraseña:</strong><br>
+                    ✔ Tener entre <b>14 y 22</b> caracteres.<br>
+                    ✔ Contener al menos <b>una letra mayúscula.</b><br>
+                    ✔ Contener al menos <b>un número.</b><br>
+                </p>
+                <label for="contrasena">Contraseña</label>
+                <input type="password" id="contrasena" name="Contrasena" required>
+            </div>
+
+            <div class="input-group">
+                <label for="mascota">¿Nombre de su primera Mascota?</label>
+                <input type="text" id="mascota" name="Pregunta1" required>
+            </div>
+
+            <div class="input-group">
+                <label for="cantante">¿Nombre de su cantante favorito?</label>
+                <input type="text" id="cantante" name="Pregunta2" required>
+            </div>
+
+            <div class="input-group">
+                <label for="materia">¿Nombre de su materia favorita?</label>
+                <input type="text" id="materia" name="Pregunta3" required>
+            </div>
+
+            <!-- Botón de búsqueda agregado -->
+            <button type="button" class="search-button">Buscar</button>
+
+            <button type="submit">Registrar</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            $(".search-button").click(function () {
+                var identificacion = $("#identificacion").val(); // Obtener el valor de identificación
+
+                if (identificacion) {
+                    $.ajax({
+                        type: "GET",
+                        url: `http://localhost:3002/buscar/${identificacion}`, // Llamar a la API de búsqueda
+                        success: function (response) {
+                            console.log(response); // Mostrar la respuesta de la API para depurar
+                            if (response.success) {
+                                // Si se encuentra el usuario, autollenar el campo de nombre
+                                $("#nombre").val(response.nombre); // Asignar el nombre al campo 'nombre'
+                            } else {
+                                // Si el usuario no es encontrado
+                                alert(response.message);
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            alert("Hubo un error al buscar el usuario.");
+                            console.error("Error: ", error);
+                        }
+                    });
+                } else {
+                    alert("Por favor ingresa una identificación.");
+                }
+            });
+
+            // Aquí va el resto del código para enviar el formulario
+            $("#registroForm").submit(function (event) {
+                event.preventDefault(); // Evita el envío tradicional del formulario
+
+                var form = $(this);
+
+                $.ajax({
+                    type: form.attr("method"),
+                    url: form.attr("action"),
+                    data: form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            alert("Verificación enviada al correo...");
+
+                            setTimeout(function () {
+                                       window.location.href = "/Login/Login"; // Redirige a la página RegistroC
+                            }, 1000);  // Después de 1 segundo
+                        } else {
+                            alert("Error: " + response.message); // Muestra el error en caso de fallo
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Hubo un error al registrar: " + xhr.responseText); // Detalles del error
+                        console.error("Error de la API: ", status, error, xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>

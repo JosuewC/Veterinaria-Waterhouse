@@ -1,0 +1,25 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recuperar Cuenta</title>
+    <link rel="stylesheet" href="~/css/RecuperarCuenta.css" asp-append-version="true">
+</head>
+<body>
+    <div class="recovery-container">
+        <button class="back-button" onclick="history.back()">←</button>
+        <h2>Recuperar Cuenta</h2>
+        <form method="post" action="/Login/RecuperarCuenta">
+            <label>Ingrese su usuario:</label>
+            <input type="text" name="usuario" required />
+            <button type="submit">Continuar</button>
+        </form>
+        <p>@ViewBag.Error</p>
+    </div>
+</body>
+</html>

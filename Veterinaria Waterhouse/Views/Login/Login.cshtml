@@ -1,0 +1,55 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Veterinaria</title>
+    <link rel="stylesheet" href="~/css/Login.css" asp-append-version="true">
+</head>
+<body>
+    <div class="login-container">
+        <form class="login-form" method="post" action="/Login/Login">
+            <h2>Usuario</h2>
+            <input type="text" name="usuario" placeholder="Ingrese su usuario" required>
+
+            <h2>Contraseña</h2>
+            <div style="position: relative;">
+                <input type="password" name="password" id="password" placeholder="Ingrese su contraseña" required>
+                <span id="togglePassword" style="position: absolute; right: 10px; top: 5px; cursor: pointer;">👁️</span>
+            </div>
+
+            <button type="submit">Ingresar</button>
+            <br />
+            <br />
+
+            <button type="button" class="register-button" onclick="window.location.href='/Registro/RegistroC'">Registrarse</button>
+
+            <br />
+            <br />
+
+            <!-- Enlace a la vista RecuperarCuenta -->
+            <a href="@Url.Action("RecuperarCuenta", "Login")" class="forgot-password">Cambiar Contraseña</a>
+        </form>
+
+        @if (!string.IsNullOrEmpty(ViewBag.Error))
+        {
+            <p style="color: red;">@Html.Raw(ViewBag.Error)</p>
+        }
+    </div>
+
+    <script>
+        const togglePassword = document.getElementById('togglePassword');
+        const password = document.getElementById('password');
+
+        togglePassword.addEventListener('click', function () {
+            if (password.type === 'password') {
+                password.type = 'text';
+                togglePassword.textContent = '🙈';
+            } else {
+                password.type = 'password';
+                togglePassword.textContent = '👁️';
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,135 @@
+﻿@model Veterinaria_Waterhouse.Models.ReservaCita
+
+@{
+    ViewBag.Title = "Reservar Cita Médica o Estética";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/reserva.css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <button class="back-button" onclick="history.back()">←</button>
+
+        <!-- Mostrar mensaje de éxito o error si está presente en TempData -->
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        @if (TempData["ErrorMessage"] != null)
+        {
+            <div class="alert alert-danger">
+                @TempData["ErrorMessage"]
+            </div>
+        }
+
+        <div class="form-container">
+            <h2>Reservar Cita Médica o Estética</h2>
+
+            <!-- Formulario de reserva -->
+            <form id="reservaForm">
+                <label for="nombre">Nombre del Dueño</label>
+                <input type="text" id="nombre" name="Nombre" required>
+
+                <label for="id_dueno">Identificación</label>
+                <input type="text" id="id_dueno" name="IdDueno" required>
+
+                <label for="telefono">Teléfono</label>
+                <input type="tel" id="telefono" name="Telefono" required>
+
+                <label for="correo">Correo</label>
+                <input type="email" id="correo" name="Correo" required>
+
+                <label for="servicio">Servicio</label>
+                <select id="servicio" name="Servicio" required>
+                    <option value="Consulta General">Consulta General</option>
+                    <option value="Vacunación">Vacunación</option>
+                    <option value="Desparasitación">Desparasitación</option>
+                    <option value="Estética Canina">Estética Canina</option>
+                    <option value="Cirugía">Cirugía</option>
+                    <option value="Hospitalización">Hospitalización</option>
+                </select>
+
+                <label for="precio">Precio (₡)</label>
+                <input type="text" id="precio" name="Precio" placeholder="Ingresa el precio" required>
+
+                <label for="fecha">Fecha</label>
+                <input type="date" id="fecha" name="Fecha" required>
+
+                <button type="submit" class="btn-reservar">Reservar</button>
+            </form>
+
+            <!-- Script para manejar la reserva -->
+            <script>
+                $(document).ready(function () {
+                    $('#reservaForm').on('submit', function (e) {
+                        e.preventDefault();
+
+                        const reservaData = {
+                            Nombre: $('#nombre').val(),
+                            IdDueno: $('#id_dueno').val(),
+                            Telefono: $('#telefono').val(),
+                            Correo: $('#correo').val(),
+                            Servicio: $('#servicio').val(),
+                            Precio: $('#precio').val().replace(/[₡,\s]/g, ''),
+                            Fecha: $('#fecha').val()
+                        };
+
+                        // Primero: enviar al backend
+                        $.ajax({
+                            type: 'POST',
+                            url: '/Reserva/RegistrarReserva',
+                            data: reservaData,
+                            success: function () {
+                                // Segundo: agregar al carrito
+                                const producto = {
+                                    id: Date.now(),
+                                    nombre: reservaData.Servicio,
+                                    precio: parseFloat(reservaData.Precio),
+                                    cantidad: 1
+                                };
+
+                                let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+                                const index = carrito.findIndex(item => item.nombre === producto.nombre);
+                                if (index > -1) {
+                                    carrito[index].cantidad += 1;
+                                } else {
+                                    carrito.push(producto);
+                                }
+                                localStorage.setItem("carrito", JSON.stringify(carrito));
+
+                                // Tercer paso: almacenar los datos de Servicio y Fecha en localStorage
+                                let historialReservas = JSON.parse(localStorage.getItem("historialReservas")) || [];
+                                historialReservas.push({
+                                    Servicio: reservaData.Servicio,
+                                    Fecha: reservaData.Fecha
+                                });
+                                localStorage.setItem("historialReservas", JSON.stringify(historialReservas));
+
+                                // Redirigir al carrito
+                                window.location.href = '/carrito/carrito';
+                            },
+                            error: function () {
+                                alert("Error al registrar la reserva.");
+                            }
+                        });
+                    });
+                });
+            </script>
+
+        </div>
+
+    </div>
+
+</body>
+</html>

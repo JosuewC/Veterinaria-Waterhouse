@@ -1,0 +1,55 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Perfil</title>
+    <link rel="stylesheet" href="~/css/perfil.css">
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="history.back()">←</button>
+        <h1 class="title">Perfil</h1>
+
+        <h2 class="subtitle">Datos Personales</h2>
+        <p><strong>Nombre:</strong> @ViewBag.Nombre</p>
+        <p><strong>Identificación:</strong> @ViewBag.Identificacion</p>
+        <p><strong>Celular:</strong> @ViewBag.Celular</p>
+        <p><strong>Correo:</strong> @ViewBag.Correo</p>
+
+        <h2 class="subtitle">Datos de las Mascotas</h2>
+
+        @if (ViewBag.Mascotas != null && ((List<Dictionary<string, string>>)ViewBag.Mascotas).Count > 0)
+        {
+            <div class="mascotas-list">
+                @foreach (var mascota in (List<Dictionary<string, string>>)ViewBag.Mascotas)
+                {
+                    <div class="mascota-card">
+                        <p><strong>Nombre:</strong> @mascota["Nombre"]</p>
+                        <p><strong>Peso:</strong> @mascota["Peso"]</p>
+                        <p><strong>Edad:</strong> @mascota["Edad"]</p>
+                        <p><strong>Raza:</strong> @mascota["Raza"]</p>
+                    </div>
+                }
+            </div>
+        }
+        else
+        {
+            <p>No se encontraron mascotas registradas.</p>
+        }
+
+        <!-- Link para ir al historial médico -->
+        <a href="@Url.Action("HistorialM", "HistorialM")" class="historial-link">Ir al Historial Médico</a>
+
+        <!-- Link para ir a la página de ubicación -->
+        <a href="@Url.Action("Index", "Ubi")" class="forgot-password">¿De dónde eres?</a>
+
+        <!-- Link para cerrar sesión -->
+        <a href="@Url.Action("Login", "Login")" class="logout-link">Cerrar sesión</a>
+    </div>
+</body>
+</html>

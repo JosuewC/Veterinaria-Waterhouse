@@ -1,0 +1,64 @@
+﻿@{
+    Layout = null;
+    ViewData["Title"] = "Adopciones";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="~/css/AdopcionesP.css">
+    <title>Adopciones</title>
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="history.back()">←</button>
+        <h1>Adopciones</h1>
+        <div class="grid-container">
+            <div class="grid-item">
+                <a href="@Url.Action("DatosPetvista", "DatosPet", new { nombre = "Rex" })">
+                    <button><img src="~/imagines/Rex.jpg" alt="Pitbull"></button>
+                </a>
+            </div>
+
+            <div class="grid-item">
+                <a href="@Url.Action("DatosPetvista", "DatosPet", new { nombre = "Max" })">
+                    <button><img src="~/imagines/Max.jpg" alt="Schnauzer"></button>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="@Url.Action("DatosPetvista", "DatosPet", new { nombre = "Thor" })">
+                    <button><img src="~/imagines/Thor.jpg" alt="Doberman"></button>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="@Url.Action("DatosPetvista", "DatosPet", new { nombre = "Zeus" })">
+                    <button><img src="~/imagines/Zeus.jpg" alt="Pastor Alemán"></button>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="@Url.Action("DatosPetvista", "DatosPet", new { nombre = "Luna" })">
+                    <button><img src="~/imagines/Luna.jpg" alt="Gato Persa"></button>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="@Url.Action("DatosPetvista", "DatosPet", new { nombre = "Milo" })">
+                    <button><img src="~/imagines/Milo.jpg" alt="Gato Ruso"></button>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="@Url.Action("DatosPetvista", "DatosPet", new { nombre = "Simba" })">
+                    <button><img src="~/imagines/Simba.jpg" alt="Gato Siamés"></button>
+                </a>
+            </div>
+            <div class="grid-item">
+                <a href="@Url.Action("DatosPetvista", "DatosPet", new { nombre = "Nala" })">
+                    <button><img src="~/imagines/Nala.jpg" alt="Gato Bengalí"></button>
+                </a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+

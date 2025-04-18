@@ -1,0 +1,49 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Agregar Tarjeta</title>
+    <link rel="stylesheet" href="~/css/Rtarjeta.css">
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="history.back()">←</button>
+        <h2>Registrar Tarjeta</h2>
+
+        <!-- ✅ Formulario corregido -->
+        <form asp-action="RegisterTarjeta" method="post">
+            <div class="input-group">
+                <label for="nombre">Nombre del Titular</label>
+                <input type="text" id="nombre" name="nombre" required />
+            </div>
+
+            <div class="input-group">
+                <label for="identificacion">Identificación</label>
+                <input type="text" id="identificacion" name="identificacion" required />
+            </div>
+
+            <div class="input-group">
+                <label for="numero_tarjeta">Número de Tarjeta</label>
+                <input type="text" id="numero_tarjeta" name="numero_tarjeta" maxlength="16" required />
+            </div>
+
+            <div class="input-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="cvv" maxlength="3" required />
+            </div>
+
+            <div class="input-group">
+                <label for="monto">Monto</label>
+                <input type="number" id="monto" name="monto" step="0.01" required />
+            </div>
+
+            <button type="submit" id="submitButton">Agregar Tarjeta</button>
+        </form>
+    </div>
+</body>
+</html>

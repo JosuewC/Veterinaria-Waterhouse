@@ -1,0 +1,97 @@
+﻿/* Asegurar que el fondo cubra toda la pantalla */
+html, body {
+    min-height: 100vh; /* Permite que el fondo crezca si el contenido es mayor */
+    margin: 0;
+    padding: 0;
+    background-color: #87CEEB; /* Fondo celeste */
+    overflow: auto; /* Evita que el contenido se corte en pantallas pequeñas */
+}
+
+/* Contenedor principal */
+.container {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+    position: relative; /* Evita que se fusione con el fondo */
+    margin: 50px auto; /* Centra el contenedor sin ocultar el fondo */
+}
+
+/* Encabezado */
+h2 {
+    margin-bottom: 20px;
+    color: #333;
+}
+
+/* Formularios */
+form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Etiquetas */
+label {
+    font-size: 16px;
+    margin-bottom: 5px;
+    color: #555;
+}
+
+/* Estilos para los inputs y selects */
+select, input {
+    width: 90%;
+    padding: 10px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Botón de acción */
+button {
+    width: 95%;
+    padding: 10px;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 18px;
+    cursor: pointer;
+    transition: 0.3s;
+}
+
+    button:hover {
+        background-color: #0056b3;
+    }
+
+/* Mensajes de error */
+p {
+    margin-top: 10px;
+    color: red;
+    font-size: 14px;
+}
+
+/* Responsivo */
+@media (max-width: 600px) {
+    .container {
+        width: 90%;
+        padding: 15px;
+    }
+
+    h2 {
+        font-size: 20px;
+    }
+
+    select, input {
+        font-size: 14px;
+        padding: 8px;
+    }
+
+    button {
+        font-size: 16px;
+        padding: 8px;
+    }
+}

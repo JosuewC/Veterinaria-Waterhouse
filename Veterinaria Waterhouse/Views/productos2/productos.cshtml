@@ -1,0 +1,68 @@
+﻿@model Veterinaria_Waterhouse.Models.Producto
+@{
+    Layout = null;
+    string imagenPath = Url.Content($"~/imagines/{Model.NombreProducto.ToLower().Replace(" ", "_").Replace("á", "a").Replace("é", "e").Replace("í", "i").Replace("ó", "o").Replace("ú", "u").Replace("ñ", "n")}.png");
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@Model.NombreProducto - Detalle</title>
+    <link rel="stylesheet" href="~/css/productos2.css">
+</head>
+<body>
+    <div class="container">
+
+        <button class="back-button" onclick="history.back()">&larr;</button>
+
+        <!-- Imagen del producto con tamaño reducido -->
+        <div class="image-container">
+            <img src="@imagenPath" alt="@Model.NombreProducto" class="product-image">
+        </div>
+
+        <div class="product-details">
+            <h1>@Model.NombreProducto</h1>
+            <p class="product-detail">@Model.Detalle</p>
+            <p class="product-price">Precio: <strong>$@Model.ValorUnitario</strong></p>
+        </div>
+
+        <!-- Botón de compra, agrega al carrito -->
+        <button class="buy-button" onclick="agregarAlCarrito(@Model.IdProducto, '@Model.NombreProducto', @Model.ValorUnitario)">Comprar</button>
+
+    </div>
+
+    <script>
+                function agregarAlCarrito(id, nombre, precio) {
+            // Obtener carrito del LocalStorage
+            let carrito = JSON.parse(localStorage.getItem("carrito")) || [];
+
+            // Crear objeto para el producto
+            let producto = {
+                id: id,
+                nombre: nombre,
+                precio: precio,
+                cantidad: 1
+            };
+
+            // Verificar si el producto ya está en el carrito
+            let index = carrito.findIndex(item => item.id === id);
+            if (index > -1) {
+                // Si el producto ya existe, aumentar la cantidad
+                carrito[index].cantidad += 1;
+            } else {
+                // Si no existe, agregarlo al carrito
+                carrito.push(producto);
+            }
+
+            // Guardar el carrito actualizado en LocalStorage
+            localStorage.setItem("carrito", JSON.stringify(carrito));
+
+            // Redirigir al carrito
+            window.location.href = '/carrito/carrito';  // Aquí va la URL que maneja el carrito
+        }
+
+    </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+﻿@{
+    ViewData["Title"] = "Ubicaciones";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Ubicación</title>
+    <link rel="stylesheet" href="~/css/ubicaciones.css" asp-append-version="true">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="container">
+        <h2>Selecciona tu Ubicación</h2>
+
+        <label for="pais">País:</label>
+        <select id="pais">
+            <option value="">Seleccione un país</option>
+        </select>
+
+        <label for="provincia">Provincia:</label>
+        <select id="provincia" disabled>
+            <option value="">Seleccione una provincia</option>
+        </select>
+
+        <label for="canton">Cantón:</label>
+        <select id="canton" disabled>
+            <option value="">Seleccione un cantón</option>
+        </select>
+
+        <label for="distrito">Distrito:</label>
+        <select id="distrito" disabled>
+            <option value="">Seleccione un distrito</option>
+        </select>
+
+        <label for="identificacion">Identificación:</label>
+        <input type="text" id="identificacion" placeholder="Ingrese su identificación">
+
+        <button id="guardar">Guardar</button>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Función para cargar las ubicaciones dependiendo del tipo y idPadre
+            function cargarUbicaciones(tipo, idPadre, selectId) {
+                $.ajax({
+                    url: "/Ubi/ObtenerUbicaciones", // Llama a la acción ObtenerUbicaciones
+                    method: "GET",
+                    data: { tipo: tipo, idPadre: idPadre },
+                    success: function (data) {
+                        $(selectId).empty().ap
+                        pend(new Option("Seleccione una opción", ""));
+                        $.each(data, function (i, item) {
+                            $(selectId).append(new Option(item.nombre, item.id)); // Usamos id para la opción, pero mostramos el nombre
+                        });
+                        $(selectId).prop("disabled", false); // Habilita el select después de cargar los datos
+                    },
+                    error: function () {
+                        alert("Error al obtener " + tipo);
+                    }
+                });
+            }
+            
+            // Cargar países al iniciar
+            cargarUbicaciones("pais", null, "#pais");
+
+            // Cargar provincias al seleccionar un país
+            $("#pais").change(function () {
+                let idPais = $(this).val();
+                $("#provincia, #canton, #distrito").empty().append(new Option("Seleccione una opción", "")).prop("disabled", true);
+                if (idPais) {
+                    cargarUbicaciones("provincia", idPais, "#provincia"); // Usamos el id del país como idPadre
+                }
+            });
+
+            // Cargar cantones al seleccionar una provincia
+            $("#provincia").change(function () {
+                let idProvincia = $(this).val();
+                $("#canton, #distrito").empty().append(new Option("Seleccione una opción", "")).prop("disabled", true);
+                if (idProvincia) {
+                    cargarUbicaciones("canton", idProvincia, "#canton"); // Usamos el id de la provincia como idPadre
+                }
+            });
+
+            // Cargar distritos al seleccionar un cantón
+            $("#canton").change(function () {
+                let idCanton = $(this).val();
+                $("#distrito").empty().append(new Option("Seleccione una opción", "")).prop("disabled", true);
+                if (idCanton) {
+                    cargarUbicaciones("distrito", idCanton, "#distrito"); // Usamos el id del cantón como idPadre
+                }
+            });
+
+            // Guardar la ubicación seleccionada
+            $("#guardar").click(function () {
+                let pais = $("#pais option:selected").text();  // Obtenemos el nombre del país
+                let provincia = $("#provincia option:selected").text();  // Obtenemos el nombre de la provincia
+             
+                let canton = $("#canton option:selected").text();  // Obtenemos el nombre del cantón
+                let distrito = $("#distrito option:selected").text();  // Obtenemos el nombre del distrito
+                let identificacion = $("#identificacion").val();
+
+                if (!pais || !provincia || !canton || !distrito || !identificacion) {
+                    alert("Por favor complete todos los campos.");
+                    return;
+                }
+
+                $.ajax({
+                    url: "/Ubi/Index",  // Llamar al método Index (POST)
+                    method: "POST",
+                    data: {
+                        pais: pais,
+                        provincia: provincia,
+                        canton: canton,
+                        distrito: distrito,
+                        identificacion: identificacion
+                    },
+                    success: function (data) {
+                        if (data.success) {
+                            alert(data.message);
+                            // Redirigir a perfil.cshtml después de guardar
+                            window.location.href = "perfil/perfil"; // Redirige a la página del perfil
+                        } else {
+                            alert(data.message);
+                        }
+                    },
+                    error: function () {
+                        alert("Error al guardar la ubicación.");
+                    }
+                });
+            });
+        });
+    </script>
+
+
+</body>
+</html>

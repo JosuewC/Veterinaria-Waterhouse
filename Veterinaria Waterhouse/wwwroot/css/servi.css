@@ -1,0 +1,85 @@
+﻿/* Contenedor principal */
+.servicios-container {
+    text-align: center;
+    padding: 20px;
+    max-width: 1200px;
+    margin: auto;
+}
+
+/* Fondo verde claro */
+body {
+    background-color: #d4f8c6;
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+}
+
+/* Título */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+/* Cuadro gris donde se mostrarán los servicios */
+.servicios-cuadro {
+    width: 80%;
+    max-width: 800px;
+    background-color: rgba(204, 204, 204, 0.9);
+    margin: 0 auto 20px;
+    border-radius: 8px;
+    padding: 20px;
+    text-align: left;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Lista de servicios */
+.lista-servicios {
+    list-style: none;
+    padding: 0;
+}
+
+    .lista-servicios li {
+        padding: 15px;
+        border-bottom: 1px solid #ccc;
+    }
+
+        .lista-servicios li:last-child {
+            border-bottom: none;
+        }
+
+    .lista-servicios h3 {
+        margin: 0;
+        color: #333;
+        font-size: 1.4rem;
+    }
+
+    .lista-servicios p {
+        margin: 5px 0;
+        color: #555;
+        font-size: 1rem;
+    }
+
+    .lista-servicios strong {
+        display: block;
+        margin-top: 5px;
+        color: #007bff;
+        font-size: 1.2rem;
+    }
+
+/* Botón de sacar cita */
+.btn-cita {
+    background-color: #007bff;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background 0.3s ease;
+    margin-top: 10px;
+}
+
+    .btn-cita:hover {
+        background-color: #0056b3;
+    }
+

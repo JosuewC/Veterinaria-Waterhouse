@@ -1,0 +1,24 @@
+﻿
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Validar Respuesta</title>
+    <link rel="stylesheet" href="~/css/ValidarRespuesta.css" asp-append-version="true">
+</head>
+<body>
+    <div class="recovery-container">
+        <h2>Validación de Identidad</h2>
+        <p>@TempData["Pregunta"]</p> <!-- Pregunta aleatoria -->
+        <form method="post" action="@Url.Action("ValidarRespuesta", "Login")">
+            <label>@TempData["Pregunta"]</label>
+            <input type="text" name="respuesta" placeholder="Ingrese su respuesta" required />
+            <input type="hidden" name="identificacion" value="@TempData["Identificacion"]" />
+            <button type="submit">Validar</button>
+        </form>
+        <p style="color: red;">@ViewBag.Error</p>
+
+    </div>
+</body>
+</html>

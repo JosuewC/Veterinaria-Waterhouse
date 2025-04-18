@@ -1,0 +1,97 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Veterinaria Waterhouse</title>
+    <link rel="stylesheet" href="/css/Menu.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <br />
+            <br />
+            <h1 class="logo">Veterinaria Waterhouse</h1>
+
+            <!-- Contenedor para los botones de perfil y carrito -->
+            <div class="top-buttons">
+                <button class="icon-button profile-button" onclick="window.location.href='/Perfil/PerfilVista'">
+                    <a href="/perfil/perfil">
+                        <img src="~/imagines/perfil.png" alt="Perfil">
+                    </a>
+                </button>
+
+                <button class="icon-button cart-button" onclick="window.location.href='/Carrito/VerCarrito'">
+                    <a href="/carrito/carrito">
+                        <img src="~/imagines/carrito.png" alt="Carrito de Compras">
+                    </a>
+                </button>
+            </div>
+        </header>
+
+        <h2 class="title">Servicios</h2>
+
+        <div class="services-grid">
+            <button class="service-button">
+                <a href="/Medicinas/Medicina">
+                    <img src="~/imagines/medicina.png" alt="Medicina">
+                </a>
+            </button>
+            <button class="service-button">
+                <a href="/Reserva/Reserva">
+                    <img src="~/imagines/sacar_cita.png" alt="Sacar Cita">
+                </a>
+            </button>
+            <button class="service-button">
+                <a href="/Adopciones/Adopciones">
+                    <img src="~/imagines/adoptame.png" alt="Adopciones">
+                </a>
+            </button>
+            <button class="service-button">
+                <a href="/Productos/ProductosVista">
+                    <img src="~/imagines/objeto.png" alt="Objeto">
+                </a>
+            </button>
+            <button class="service-button">
+                <a href="/RegistroP/RegistroP">
+                    <img src="~/imagines/mascota.jpg" alt="Mascota">
+                </a>
+            </button>
+            <button class="service-button">
+                <a href="/servi/Servi">
+                    <img src="~/imagines/serviciosmedicos.png" alt="Servicios Médicos">
+                </a>
+            </button>
+
+            <!-- Tipo de Cambio -->
+            <button class="service-button">
+                <a href="/tipocambio/tipocambio">
+                    <img src="~/imagines/banco.png" alt="Tipo de Cambio">
+                </a>
+            </button>
+
+            <!-- Tarjeta -->
+            <button class="service-button">
+                <a href="/Tarjeta/RegisterTarjeta">
+                    <img src="~/imagines/tarjeta.png" alt="Tarjeta">
+                </a>
+            </button>
+        </div>
+
+
+        <!-- Sección de contacto -->
+        <footer class="contact-section">
+            <h3>Contáctenos</h3>
+            <p>📞 Teléfono: <strong>64776485</strong></p>
+            <p>📧 Correo: <strong>VeterinariaWaterhouse@gmail.com</strong></p>
+        </footer>
+
+    </div>
+
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

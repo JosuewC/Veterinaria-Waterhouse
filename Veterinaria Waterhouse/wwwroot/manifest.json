@@ -1,0 +1,25 @@
+{
+  "short_name": "VeterinariaWaterhouse",
+  "name": "Veterinaria Waterhouse",
+  "description": "Mi primera app",
+  "start_url": "/Onboarding/pantalla1",
+  "background_color": "#FFFFFF",
+  "theme_color": "#FFFFFF",
+  "orientation": "portrait",
+  "display": "standalone",
+  "display_override": [ "standalone" ],
+  "icons": [
+    {
+      "src": "/content/icons/imagen1.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/content/icons/imagen2.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "any maskable"
+    }
+  ]
+}

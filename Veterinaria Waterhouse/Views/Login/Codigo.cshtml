@@ -1,0 +1,29 @@
+﻿@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Verificación de Código</title>
+    <link rel="stylesheet" href="~/css/codigo.css" asp-append-version="true">
+</head>
+<body>
+    <div class="wrapper">
+        <div class="form-container">
+            <h2>Ingrese su código de verificación</h2>
+            <form method="post">
+                <div class="input-group">
+                    <label for="codigoIngresado">Código:</label>
+                    <input type="text" id="codigoIngresado" name="codigoIngresado" required>
+                </div>
+                <button type="submit">Validar Código</button>
+            </form>
+            @if (ViewBag.Error != null)
+            {
+                <p class="error">@ViewBag.Error</p>
+            }
+        </div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,183 @@
+﻿body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+
+.container {
+    background-color: white;
+    padding: 15px;
+    border-radius: 10px;
+    text-align: center;
+    width: 90%;
+    max-width: 360px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    max-height: 90vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+/* Títulos y texto */
+h1 {
+    margin-bottom: 10px;
+    font-size: 1.3rem;
+    color: #2e7d32;
+}
+
+p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    text-align: left;
+}
+
+/* Imágenes */
+img {
+    width: 80%;
+    max-width: 250px;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+/* Inputs */
+input[type="text"],
+input[type="email"],
+input[type="password"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    font-size: 0.9rem;
+}
+
+/* Paginador */
+.nav-dots {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+    .nav-dots span {
+        height: 8px;
+        width: 8px;
+        margin: 0 4px;
+        background-color: #bbb;
+        border-radius: 50%;
+        display: inline-block;
+        transition: background-color 0.3s;
+    }
+
+    .nav-dots .active {
+        background-color: #4CAF50;
+    }
+
+/* Botones */
+.buttons {
+    margin-top: 10px;
+    padding-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btn, .btn-secondary {
+    padding: 8px 14px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    color: white;
+    font-size: 0.85rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+}
+
+.btn {
+    background-color: #4CAF50;
+}
+
+    .btn:hover {
+        background-color: #45a049;
+    }
+
+.btn-secondary {
+    background-color: #757575;
+}
+
+    .btn-secondary:hover {
+        background-color: #616161;
+    }
+
+/* Requisitos de contraseña */
+.password-requirements {
+    text-align: left;
+    font-size: 0.8rem;
+    margin-bottom: 10px;
+}
+
+    .password-requirements strong {
+        display: block;
+    }
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .container {
+        max-width: 300px;
+        padding: 10px;
+        max-height: 92vh;
+    }
+
+    h1 {
+        font-size: 1.1rem;
+    }
+
+    img {
+        max-width: 200px;
+    }
+
+    p {
+        font-size: 0.85rem;
+    }
+
+    .btn {
+        padding: 6px 12px;
+        font-size: 0.75rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .container {
+        max-width: 280px;
+        padding: 8px;
+        max-height: 95vh;
+    }
+
+    h1 {
+        font-size: 1rem;
+    }
+
+    img {
+        max-width: 180px;
+    }
+
+    p {
+        font-size: 0.75rem;
+    }
+
+    .btn {
+        padding: 5px 10px;
+        font-size: 0.7rem;
+    }
+
+    .nav-dots span {
+        height: 7px;
+        width: 7px;
+    }
+}

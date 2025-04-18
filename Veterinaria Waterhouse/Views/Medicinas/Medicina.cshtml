@@ -1,0 +1,68 @@
+﻿@model dynamic
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Medicinas Veterinarias</title>
+    <link rel="stylesheet" href="~/css/Medicinas.css">
+</head>
+<body>
+    <div class="container">
+        <button class="back-button" onclick="window.history.back();">
+            <i class="fas fa-arrow-left"></i>
+        </button>
+        <h2 class="title">Medicinas Veterinarias</h2>
+        <div class="medicines-grid">
+            <div class="medicine-item">
+                <button class="back-button" onclick="history.back()">←</button>
+                <a href="@Url.Action("MedicinaD", "MedicinaD", new { nombre_medicina = "Apetipet" })">
+                    <button class="medicine-button">
+                        <img src="~/imagines/Apetipet.jpg" alt="Apetipet">
+                    </button>
+                </a>
+            </div>
+            <div class="medicine-item">
+                <a href="@Url.Action("MedicinaD", "MedicinaD", new { nombre_medicina = "Doguivi" })">
+                    <button class="medicine-button">
+                        <img src="~/imagines/Doguivi.jpg" alt="Doguivit">
+                    </button>
+                </a>
+            </div>
+            <div class="medicine-item">
+                <a href="@Url.Action("MedicinaD", "MedicinaD", new { nombre_medicina = "Heprotec" })">
+                    <button class="medicine-button">
+                        <img src="~/imagines/Heprotec.jpg" alt="Heprotec">
+                    </button>
+                </a>
+            </div>
+            <div class="medicine-item">
+                <a href="@Url.Action("MedicinaD", "MedicinaD", new { nombre_medicina = "Naxpet" })">
+                    <button class="medicine-button">
+                        <img src="~/imagines/Naxpet.jpg" alt="Naxpet">
+                    </button>
+                </a>
+            </div>
+            <div class="medicine-item">
+                <a href="@Url.Action("MedicinaD", "MedicinaD", new { nombre_medicina = "Pacifor" })">
+                    <button class="medicine-button">
+                        <img src="~/imagines/Pacifor.jpg" alt="Pacifor">
+                    </button>
+                </a>
+            </div>
+            <div class="medicine-item">
+                <a href="@Url.Action("MedicinaD", "MedicinaD", new { nombre_medicina = "Rostrum" })">
+                    <button class="medicine-button">
+                        <img src="~/imagines/Rostrum.jpg" alt="Rostrum">
+                    </button>
+                </a>
+            </div>
+        </div>
+    </div>
+    <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
+</body>
+</html>

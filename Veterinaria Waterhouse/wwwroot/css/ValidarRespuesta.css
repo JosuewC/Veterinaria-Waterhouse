@@ -1,0 +1,90 @@
+﻿/* Fondo de la página */
+body {
+    background-color: #B3E5FC; /* Celeste */
+    font-family: Arial, sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+/* Contenedor principal */
+.recovery-container {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+    text-align: center;
+    width: 100%;
+    max-width: 400px;
+}
+
+/* Título */
+h2 {
+    color: #0288D1; /* Azul fuerte */
+    margin-bottom: 20px;
+}
+
+/* Pregunta de seguridad */
+p {
+    font-weight: bold;
+    font-size: 16px;
+    color: #01579B; /* Azul oscuro */
+    margin-bottom: 15px;
+}
+
+/* Input de respuesta */
+input[type="text"] {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #90CAF9;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+/* Botón de validar */
+button {
+    background-color: #0288D1; /* Azul fuerte */
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    transition: background 0.3s ease;
+    width: 100%;
+}
+
+    button:hover {
+        background-color: #01579B; /* Azul más oscuro */
+    }
+
+/* Mensajes de error */
+p.error {
+    color: red;
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* 📱 Responsividad para móviles */
+@media (max-width: 600px) {
+    .recovery-container {
+        width: 90%;
+        padding: 20px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    input[type="text"] {
+        font-size: 14px;
+    }
+
+    button {
+        font-size: 14px;
+        padding: 10px;
+    }
+}

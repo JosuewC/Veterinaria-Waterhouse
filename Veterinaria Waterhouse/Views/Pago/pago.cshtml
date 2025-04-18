@@ -1,0 +1,101 @@
+﻿@model Veterinaria_Waterhouse.Models.Pago
+
+@{
+    ViewBag.Title = "Realizar Pago";
+}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title</title>
+    <link rel="stylesheet" href="~/css/pago.css" type="text/css">
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+    <div class="form-container">
+        <h2>Realizar Pago</h2>
+        <form id="pagoForm" action="/Pago/RealizarPago" method="POST">
+            <div class="input-group">
+                <label for="numeroTarjeta">Número de Tarjeta</label>
+                <input type="text" id="numeroTarjeta" name="NumeroTarjeta" required>
+            </div>
+
+            <div class="input-group">
+                <label for="cvv">CVV</label>
+                <input type="text" id="cvv" name="Cvv" required>
+            </div>
+
+            <div class="input-group">
+                <label for="montoAPagar">Monto a Pagar</label>
+                <input type="number" id="montoAPagar" name="MontoAPagar" required>
+            </div>
+
+            <div class="input-group">
+                <label for="nombre">Nombre</label>
+                <input type="text" id="nombre" name="Nombre" required>
+            </div>
+
+            <div class="input-group">
+                <label for="identificacion">Identificación</label>
+                <input type="text" id="identificacion" name="Identificacion" required>
+            </div>
+
+            <div class="input-group">
+                <label for="descripcion">Descripción</label>
+                <input type="text" id="descripcion" name="Descripcion" required readonly>
+            </div>
+
+            <button type="submit">Realizar Pago</button>
+        </form>
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Obtener los productos y el monto desde localStorage
+            let carrito = JSON.parse(localStorage.getItem("productos")) || [];
+            let total = parseFloat(localStorage.getItem("total")) || 0;
+
+            // Redondear el total sin decimales
+            total = Math.floor(total);  // Esto elimina los decimales y deja el monto entero
+
+            // Crear la descripción con los productos y cantidades
+            let descripcion = carrito.map(item => `${item.nombre} (Unidades: ${item.cantidad})`).join(", ");
+
+            // Llenar los campos con los valores del carrito
+            $('#descripcion').val(descripcion); // Descripción de los productos
+            $('#montoAPagar').val(total); // Monto total (sin decimales)
+
+            // Aquí va el código para enviar el formulario
+            $("#pagoForm").submit(function (event) {
+                event.preventDefault(); // Evita el envío tradicional del formulario
+
+                var form = $(this);
+
+                $.ajax({
+                    type: form.attr("method"),
+                    url: form.attr("action"),
+                    data: form.serialize(),
+                    success: function (response) {
+                        if (response.success) {
+                            alert("Pago realizado exitosamente.");
+                            // Redirigir al perfil después de 1 segundo
+                            setTimeout(function () {
+                                window.location.href = "/perfil/perfil"; // Redirige a la página de perfil
+                            }, 1000);  // Después de 1 segundo
+                        } else {
+                            alert("Error: " + response.message); // Muestra el error en caso de fallo
+                        }
+                    },
+                    error: function (xhr, status, error) {
+                        alert("Hubo un error al realizar el pago: " + xhr.responseText); // Detalles del error
+                        console.error("Error de la API: ", status, error, xhr.responseText);
+                    }
+                });
+            });
+        });
+    </script>
+</body>
+</html>
